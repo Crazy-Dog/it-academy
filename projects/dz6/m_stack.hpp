@@ -8,8 +8,12 @@ class Stack {
 		T value;
 		Node * prev;
 	};
-	Node * top = NULL;
+	Node * top;
 public:
+	Stack()
+	{
+		top = NULL;
+	}
 	void push(T value) 
 	{
 		Node * tmpNode = top;
