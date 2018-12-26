@@ -2,9 +2,8 @@
 
 template<typename T>
 class Stack {
-	class Node
+	struct Node
 	{
-	public:
 		T value;
 		Node * prev;
 	};
@@ -23,29 +22,21 @@ public:
 	}
 	T pop() 
 	{
-		T tmpValue = {};
-		if(top != NULL)
+		T tmpValue(0);
+		if(top)
 		{
 			tmpValue = top->value;
-			if(top->prev != NULL)
-			{
-				Node *tmpNode = top->prev;
-				delete top;
-				top = tmpNode;
-			} 
-			else
-			{
-				delete top;
-				top = NULL;
-			}
+			Node *tmpNode = top->prev;
+			delete top;
+			top = tmpNode;
 		}
 		return tmpValue;
 	}
 	~Stack() 
 	{
-		while(top != NULL)
+		while(top)
 		{
-			if(top->prev != NULL)
+			if(top->prev)
 			{
 				Node *tmpNode = top->prev;
 				delete top;
