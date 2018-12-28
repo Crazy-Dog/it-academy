@@ -8,10 +8,29 @@ class Stack {
 		Node * prev;
 	};
 	Node * top;
+	void copy(Node *pb)
+	{
+		if(!pb) 
+		{
+			top = NULL;
+			return;
+		}
+		copy(pb->prev);
+		push(pb->value);
+	}
 public:
 	Stack()
 	{
 		top = NULL;
+	}
+	Stack(const Stack & obj)
+	{
+		copy(obj.top);
+	}
+	Stack & operator = (const Stack & obj)
+	{
+		copy(obj.top);
+		return *this;
 	}
 	void push(T value) 
 	{

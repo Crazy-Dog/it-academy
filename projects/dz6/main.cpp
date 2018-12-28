@@ -7,18 +7,14 @@ int main()
 	test.push(11);
 	test.push(4242);
 	std::cout << test.pop() << std::endl; 
-	std::cout << test.pop() << std::endl;
-	std::cout << test.pop() << std::endl;
-	test.push(33);
-	std::cout << test.pop() << std::endl;
-	test.push(432423);
-	test.push(756);
-	std::cout << test.pop() << std::endl;
-	test.push(222);
-	std::cout << test.pop() << std::endl;
-	std::cout << test.pop() << std::endl;
-	test.push(222);
-	test.push(222);
-	test.push(222);
+	Stack<int> test2 = test;
+	std::cout << test2.pop() << std::endl;
+	std::cout << test2.pop() << std::endl;
+	Stack<int> test3;
+	test3 = test2 = test;
+	std::cout << test3.pop() << std::endl;
+	std::cout << test3.pop() << std::endl;
+	std::cout << test3.pop() << std::endl;
+	std::cout << test2.pop() << std::endl;
 	return 0;
 }
