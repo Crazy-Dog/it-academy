@@ -22,12 +22,25 @@ public:
 	{
 		size = 0;
 		head = tail = NULL;
-		Node * point = list.tail;
-		while(point)
+		Node * point = list.head;
+		while(point != list.tail)
 		{
 			push_back(point->value);
-			point = point->prev;
+			point = point->next;
 		}
+		push_back(point->value);
+	}
+	List & operator =(const List & list)
+	{
+		clean();
+		Node * point = list.head;
+		while(point != list.tail)
+		{
+			push_back(point->value);
+			point = point->next;
+		}
+		push_back(point->value);
+		return *this;
 	}
 	void push_back(T value)
 	{
@@ -45,7 +58,7 @@ public:
 			head = tail;
 		}
 	}
-	~List()
+	void clean()
 	{
 		while(tail != head)
 		{
@@ -55,6 +68,10 @@ public:
 		}
 		delete tail;
 		head = tail = NULL;
+		size = 0;
+	}
+	~List()
+	{
+		clean();
 	}
 };
-
