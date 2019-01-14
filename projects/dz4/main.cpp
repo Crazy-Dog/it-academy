@@ -1,6 +1,5 @@
 #include <iostream>
 #include <ctime>
-#include "proto.hpp"
 
 int main()
 {
@@ -9,10 +8,8 @@ int main()
 	int arr[SIZE];
 	for(int i = 0; i < SIZE; i++)
 	{
-		arr[i] = rand() % 100;
+		arr[i] = rand() % 3;
 	}
-	
-	my_sort(arr, SIZE);
 	
 	for(int i = 0; i < SIZE; i++)
 	{

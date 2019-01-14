@@ -3,7 +3,7 @@
 template<typename T>
 class List
 {
-	struct Node
+	struct NodeJois
 	{
 		T value;
 		Node * next;
@@ -44,7 +44,7 @@ public:
 	}
 	void push_back(T value)
 	{
-		size++;
+		size = size+1;
 		Node * tmpNode = tail;
 		tail = new Node;
 		tail->value = value;
