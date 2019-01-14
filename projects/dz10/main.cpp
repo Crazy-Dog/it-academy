@@ -4,41 +4,32 @@
 int main()
 {
 	std::fstream file("str.txt", std::ios::in | std::ios::out);
-	int currPos = 0;
-	
-	while(1)
+	int currPos = 0, flag = 1;
+
+	while (flag)
 	{
 		file.seekg(currPos);
-		char buf[4];
-		file.read(buf, 4);
-		if(file.eof()) break;
-		int tmpVal = atoi(buf);
-		currPos += 5;
-		
-//		std::cout << atoi(buf) << ' ';
-		
+		int tmpVal = 0;
+		file >> tmpVal;
+		if (file.eof()) flag = 0;
 		int pos = currPos;
-		for(int j = currPos - 5; j >= 0; j = j - 5)
+		currPos += 5;
+
+		for (int j = pos - 5; j >= 0; j = j - 5)
 		{
-			char tmpTest[4];
+			int test;
 			file.seekg(j);
-			file.read(tmpTest, 4);
-			int test = atoi(tmpTest);
-			if(tmpVal < test)
-			{
-				pos = j;
-				std::cout << test << ' ';
-				break;
-			}
-			file.seekp(j+5);
-			file.write(tmpTest, 4);
+			file >> test;
+			if (tmpVal < test) break;
+			file.seekp(j + 5);
+			file << test;
 			pos = j;
 		}
 		file.seekp(pos);
-		file.write(buf, 4);
+		file << tmpVal;
 	}
-	
+
 	file.close();
-	
+
 	return 0;
 }
